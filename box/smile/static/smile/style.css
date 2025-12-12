@@ -1,0 +1,39 @@
+.M{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.I{
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+.L{
+    margin-left: 2em;
+}
+.UL{
+    margin-right: 2em;
+}
+.tg{
+    width: 25%;
+    margin-left: 290%;
+
+}
+.P{
+   margin-left: 250%;
+   white-space: nowrap; 
+}

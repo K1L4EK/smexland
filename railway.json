@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "DOCKERFILE"
+  },
+  "deploy": {
+    "startCommand": "python manage.py migrate && gunicorn ваш_проект.wsgi:application --bind 0.0.0.0:$PORT",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}

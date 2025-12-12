@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'smile/style.css' %}">
+    <link rel="stylesheet" href="{% static 'smile/bootstrap.css' %}">
+    <title>Document</title>
+</head>
+<body class="B">
+    {% include 'smile/includes/header.html' %}
+    <main class="M" id="main"> 
+        {% for product in product %}
+        <div class="card">
+            <h1 class="H">{{product.name}}</h1>
+            <img class="I" src="{{product.image.url}}" alt="...">
+            <p>{{product.text}}</p>
+        </div>
+        {% endfor %}
+    </main>
+    {% include 'smile/includes/footer.html' %}
+</body>
+</html>

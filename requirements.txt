@@ -1,0 +1,20 @@
+# Основные зависимости
+Django==4.2.7
+gunicorn==20.1.0
+
+# База данных
+psycopg2-binary==2.9.9  # для PostgreSQL
+# или для MySQL:
+# mysqlclient==2.2.0
+
+# Статические файлы
+whitenoise==6.6.0
+
+# Безопасность
+python-dotenv==1.0.0
+cryptography==41.0.7
+
+# Дополнительные полезные библиотеки
+Pillow==10.1.0          # обработка изображений
+django-cors-headers==4.3.0  # CORS заголовки
+django-environ==0.11.2
