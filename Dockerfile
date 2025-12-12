@@ -1,37 +1,23 @@
-# 1. Базовый образ
-FROM python:3.11-alpine
+FROM python:3.11-slim
 
-# 2. Устанавливаем системные зависимости для PostgreSQL
-RUN apk update \
-    && apk add --no-cache \
-        postgresql-dev \
-        gcc \
-        python3-dev \
-        musl-dev \
-        libffi-dev \
-        jpeg-dev \
-        zlib-dev
+# Установите системные зависимости для psycopg2
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# 3. Устанавливаем рабочую директорию
 WORKDIR /app
 
-# 4. Устанавливаем переменные окружения
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV PIP_NO_CACHE_DIR=1
-
-# 5. Копируем и устанавливаем зависимости
+# Копируем и устанавливаем зависимости
 COPY requirements.txt .
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# 6. Копируем весь проект
+# Копируем проект
 COPY . .
 
-# 7. Создаем статические файлы (опционально)
-# RUN python manage.py collectstatic --noinput --clear
+# Собираем статику
+RUN python manage.py collectstatic --noinput
 
-# 8. Запускаем миграции и сервер (для Railway лучше разделить)
-CMD ["sh", "-c", "python manage.py migrate && gunicorn your_project_name.wsgi --bind 0.0.0.0:$PORT"]
-
-CMD python manage.py migrate && gunicorn smexland2.wsgi:application --bind 0.0.0.0:$PORT
+# Запускаем миграции и Gunicorn
+CMD sh -c "python manage.py migrate && gunicorn ваш_проект.wsgi:application --bind 0.0.0.0:$PORT"
