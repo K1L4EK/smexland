@@ -1,10 +1,5 @@
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /app
 
 COPY requirements.txt .
@@ -12,7 +7,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Пропускаем collectstatic пока не настроена статика
+# ВРЕМЕННО закомментируйте:
 # RUN python manage.py collectstatic --noinput
 
-CMD sh -c "python manage.py migrate && gunicorn ваш_проект.wsgi:application --bind 0.0.0.0:$PORT"
+EXPOSE $PORT
+
+CMD ["sh", "-c", "python manage.py migrate && gunicorn ваш_проект.wsgi:application --bind 0.0.0.0:$PORT"]
