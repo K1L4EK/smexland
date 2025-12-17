@@ -12,4 +12,5 @@ COPY . .
 
 EXPOSE $PORT
 
-CMD ["sh", "-c", "python manage.py migrate && gunicorn ваш_проект.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn smile.wsgi:application --bind 0.0.0.0:$PORT"]
+
