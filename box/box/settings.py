@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-50&t8f-1_yxv*m3$oxyaz60w_x$vll(=ivva4c^ow_n*t56j80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['smexland-production.up.railway.app', '*']
 
 
 # Application definition
@@ -131,3 +131,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
